@@ -1,3 +1,5 @@
+# Modified and adapted from http://stackoverflow.com/a/13478773/2607840
+
 function Get-MSBuildPath {
     param([string]$dnv = $null)
     $regKey = "HKLM:\software\Microsoft\MSBuild\ToolsVersions\$dnv"
@@ -7,7 +9,6 @@ function Get-MSBuildPath {
 function Get-MSBuild {
     param([string]$dotNetVersion = $null)
     
-    # Modified and adapted from http://stackoverflow.com/a/13478773/2607840
     # Valid Versions are the following: 2.0, 3.5, 4.0, 12.0 (Visual Studio 2013), 14.0 (Visual Studio 2015)
     $validValues = @("14.0","12.0","4.0","3.5","2.0")
     
@@ -31,10 +32,7 @@ function Get-MSBuild {
         catch{}
     }
 }
-
-function Get-Solutions {
- Get-ChildItem -Recurse -Include *.sln | % { $_.FullName }
-}
+function Get-Solutions { Get-ChildItem -Recurse -Include *.sln | % { $_.FullName } }
 
 $msbuild = Get-MSBuild
 Get-Solutions | % { &$msbuild /nologo /v:q $_ }
