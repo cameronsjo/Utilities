@@ -1,6 +1,6 @@
-public class SqlGenerator
+public static class SqlGenerator
 {
-	public string CreateTable<T>(IEnumerable<T> enumerable = null, string tableName = null) where T : class, new()
+	public static string CreateTable<T>(IEnumerable<T> enumerable = null, string tableName = null) where T : class, new()
 	{
 		var type = typeof(T);
 		var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToList();
@@ -23,7 +23,7 @@ public class SqlGenerator
 		return $"CREATE TABLE {tableName ?? type.Name} ({columns});";
 	}
 
-	public string CreateInsert<T>(T value, string tableName) where T : class, new()
+	public static string CreateInsert<T>(T value, string tableName) where T : class, new()
 	{
 		var type = typeof(T);
 		var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToList();
