@@ -13,8 +13,11 @@ public static class SqlGenerator
 		var columns = properties.Aggregate("", (sql, property) =>
 		{
 			string maxLength = "MAX";
-			try { maxLength = Math.Max(collection?.Select(c => property?.GetValue(c)?.ToString()?.Length)?.Max() ?? 0, 1).ToString(); }
-			catch { }
+			try
+			{
+				maxLength = Math.Max(collection?.Select(c => property?.GetValue(c)?.ToString()?.Length)?.Max() ?? 0, 1).ToString();
+			}
+			catch{}
 			var propertyName = property.Name;
 
 			if (string.IsNullOrWhiteSpace(sql))
@@ -44,10 +47,10 @@ public static class SqlGenerator
 			if (propertyValue == null || propertyValue == DBNull.Value)
 				propertyValue = "NULL";
 			else
-				propertyValue = propertyValue.ToString();
+				propertyValue = $"'{propertyValue.ToString()}'";
 
-			values.Append($"{(i >= 1 ? ", " : "")}'{propertyValue}'");
-			columns.Append($"{(i >= 1 ? ", " : "")}'{property.Name}");
+			values.Append($"{(i >= 1 ? ", " : "")}{propertyValue}");
+			columns.Append($"{(i >= 1 ? ", " : "")}{property.Name}");
 		}
 
 		return $"INSERT INTO {tableName ?? type.Name} ({columns.ToString()}) VALUES ({values})";
