@@ -1,7 +1,7 @@
 # http://stackoverflow.com/a/10472358/2607840
 Function Get-ProjectReferences ($rootFolder)
 {
-    $projectFiles = Get-ChildItem $rootFolder -Filter *.csproj -Recurse
+    $projectFiles = Get-ChildItem $rootFolder\* -Include *.csproj, *.vbproj -Recurse
     $ns = @{ defaultNamespace = "http://schemas.microsoft.com/developer/msbuild/2003" }
 
     $projectFiles | ForEach-Object {
