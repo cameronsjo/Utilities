@@ -1,4 +1,4 @@
-/// <summary>
+    /// <summary>
     ///   Compares an object against two other objects (upper and lower bound objects) to see if the value is between them.
     /// </summary>
     /// <typeparam name="T">Type of the object</typeparam>
