@@ -26,6 +26,7 @@
         default:
           throw new Exception("Unable to process between. Invalid BetweenOptions value.");
       }
+    }
       
   public enum BetweenOptions
   {
