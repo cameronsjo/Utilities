@@ -11,6 +11,11 @@ const unlinkAsync = util.promisify(fs.unlink);
 const readdirAsync = util.promisify(fs.readdir);
 const rmdirAsync = util.promisify(fs.rmdir);
 
+/**
+ * Recursively deletes files and folders from the root directory
+ * @param {string} root Root directory from which things should be deleted.
+ * @returns {Promise<void>} 
+ */
 async function rmdirRecursive(root) {
     const entries = await readdirAsync(root, { withFileTypes: true });
     const unlinkPromises = entries.map(async entry => {
