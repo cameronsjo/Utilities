@@ -1,0 +1,61 @@
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
+
+public class $Class$Options
+{
+
+}
+
+public class $Class$OptionsValidator : AbstractValidator<$Class$Options>, IValidateOptions<$Class$Options>
+{
+    public $Class$OptionsValidator()
+    {
+        // TODO Add rules
+    }
+    
+    public ValidateOptionsResult Validate(string name, $Class$Options options)
+    {
+        var result = Validate(options);
+
+        return result.IsValid ? ValidateOptionsResult.Success : ValidateOptionsResult.Fail(result.Errors.Select(e => e.ToString()));
+    }
+}
+
+public class Configure$Class$ : IConfigureOptions<$Class$Options>
+{
+    public Configure$Class$() 
+    {
+        // TODO Add dependencies
+    }
+
+    public void Configure($Class$Options options)
+    {
+        // TODO Add configurations 
+    }
+}
+
+public class $Class$ 
+{
+    private readonly ILogger<$Class$> _logger;
+    private readonly IOptions<$Class$Options> _options;
+
+    public $Class$(ILogger<$Class$> logger, IOptions<$Class$Options> options) 
+    { 
+        _logger = logger;
+        _options = options;
+    }
+}
+
+public static class $Class$ServiceExtensions 
+{
+    public static IServiceCollection Add$Class$(this IServiceCollection collection)
+    {
+        // TODO Verify lifetime of $Class$
+        collection.TryAddSingleton<$Class$>();
+        collection.TryAdd(ServiceDescriptor.Singleton<IConfigureOptions<$Class$Options>, Configure$Class$>());
+        collection.TryAdd(ServiceDescriptor.Singleton<IValidateOptions<$Class$Options>, $Class$OptionsValidator>());
+    
+        return collection;
+    }
+}
