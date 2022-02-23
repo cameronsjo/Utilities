@@ -24,14 +24,18 @@ public class $Class$OptionsValidator : AbstractValidator<$Class$Options>, IValid
 
 public class Configure$Class$ : IConfigureOptions<$Class$Options>
 {
-    public Configure$Class$() 
+    private readonly IConfiguration _configuration;
+    
+    public Configure$Class$(IConfiguration configuration) 
     {
         // TODO Add dependencies
+        _configuration = configuration;
     }
 
     public void Configure($Class$Options options)
     {
-        // TODO Add configurations 
+        // TODO Add configurations
+        _configuration.Bind(options); 
     }
 }
 
