@@ -7,21 +7,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # Next, install stuff
 
 # Mandatory stuff
-choco install 7zip.install
-choco install googlechrome
-choco install dropbox
-choco install 1password
+choco install -y 7zip.install  googlechrome  dropbox 1password
 
 # Media / Productivity
-choco install itunes
-choco install vlc
-choco install malwarebytes
-choco install greenshot
+choco install -y itunes  vlc  malwarebyte  greenshot
 
 # Dev stuff
-choco install nodejs.install git openssl.light
-choco install vscode linqpad5.anycpu.portable
-choco install visualstudio2017community
+choco install git openssl.light vscode linqpad6.anycpu.portable
 
 # Gaming stuff
 choco install steam battle.net origin discord
