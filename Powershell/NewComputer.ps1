@@ -10,7 +10,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 choco install -y 7zip.install  googlechrome  dropbox 1password
 
 # Media / Productivity
-choco install -y itunes  vlc  malwarebyte  greenshot
+choco install -y itunes  vlc  malwarebytes  greenshot
 
 # Dev stuff
 choco install git openssl.light vscode linqpad6.anycpu.portable
